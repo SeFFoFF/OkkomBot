@@ -15,6 +15,16 @@ let CHAT_STORE = {
     requestToManager: {
         text: "",
         phoneNumber: ""
+    },
+    order: {
+        window: {
+            sizes: {
+                width: 0,
+                height: 0
+            },
+            profile: 0, // 60mm, 70mm, 85mm
+            doubleGlazedWindows: "", // однокамерний, двокамерний, трикамерний
+        }
     }
 }
 
@@ -90,11 +100,17 @@ const start = () => {
 
         switch (data) {
         case "ourServices": {
-            return bot.sendMessage(chatId, "Нижче наведені послуги, які ми надаємо", botOptions.services)
+            return bot.sendMessage(chatId, "Послуги, які ми надаємо", botOptions.services)
+        }
+        case "cancel": {
+            return bot.sendMessage(chatId, "Пслуги, які ми надаємо", botOptions.services)
         }
         case SERVICES.metalPlasticConstructions.callbackData: {
-            await bot.sendMessage(chatId, "ВЕДУТСЯ РАБОТЫ, ВЫПЕЙТЕ ЧАШЕЧКУ КОФЕ И ПОПРОБУЙТЕ ПОЗЖЕ")
-            return bot.sendSticker(chatId, "https://img-04.stickers.cloud/packs/3a61acd0-d362-45f5-9307-2c9c99ac0bbe/webp/96a802c4-9e6c-4354-aa90-229db45583c6.webp")
+            return bot.sendMessage(chatId, "Металопластикові конструкції", botOptions.metalPlasticConstructions)
+        }
+        case SERVICES.metalPlasticConstructions.types.windows.callbackData: {
+            await bot.sendMessage(chatId, "Оберіть вінко з представлених нижче (вiд 1 до 16)", botOptions.metalPlasticConstructions)
+            return bot.sendPhoto(chatId)
         }
         case SERVICES.interiorDoor.callbackData: {
             await bot.sendMessage(chatId, "ВЕДУТСЯ РАБОТЫ, ВЫПЕЙТЕ ЧАШЕЧКУ КОФЕ И ПОПРОБУЙТЕ ПОЗЖЕ")
@@ -113,7 +129,7 @@ const start = () => {
                 ...CHAT_STORE,
                 isOtherOption: true
             }
-            return bot.sendMessage(chatId, "Якщо у Вас є якесь питання, то Ви можете його нам написати і наш менеджер з Вами зв'яжеться (придумать нормальный текст)")
+            return bot.sendMessage(chatId, "Залишіть будь ласка ваше повідомлення і наш менеджер з Вами зв'яжеться", botOptions.cancel)
         }
         default: return undefined
         }
