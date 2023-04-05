@@ -124,7 +124,7 @@ const start = () => {
         const username = msg.chat.username
 
         if (CHAT_STORE.wishes.isActive) {
-            if (text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
 
             CHAT_STORE.wishes = {
                 ...CHAT_STORE.wishes,
@@ -135,7 +135,7 @@ const start = () => {
         }
 
         if (CHAT_STORE.isOtherOption) {
-            if (text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
 
             if (!CHAT_STORE.requestToManager.text) {
                 CHAT_STORE.requestToManager = {
@@ -172,11 +172,11 @@ const start = () => {
         }
 
         if (CHAT_STORE.order.window.orderStep) {
-            if (text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
 
             switch (CHAT_STORE.order.window.orderStep) {
             case 1: {
-                if (text < 1 || text > 16) return bot.sendMessage(chatId, "Помилка, оберіть вінко від 1 до 16")
+                if (text < 1 || text > 16 || Number.isNaN(Number(text))) return bot.sendMessage(chatId, "Помилка, оберіть вінко від 1 до 16")
 
                 CHAT_STORE.order.window = {
                     ...CHAT_STORE.order.window,
@@ -187,7 +187,7 @@ const start = () => {
                 return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
             }
             case 2: {
-                if (text < 1) return bot.sendMessage(chatId, "Помилка, введіть правильне значення")
+                if (text < 1 || Number.isNaN(Number(text))) return bot.sendMessage(chatId, "Помилка, введіть правильне значення")
 
                 if (!CHAT_STORE.order.window.sizes.width) {
                     CHAT_STORE.order.window.sizes = {
