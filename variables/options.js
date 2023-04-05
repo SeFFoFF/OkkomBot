@@ -33,6 +33,13 @@ const botOptions = {
             ]
         })
     },
+    wishes: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "Так", callback_data: "yes" }, { text: "Нi", callback_data: "no" }],
+            ]
+        })
+    }
 }
 
 const windowsOptions = {
@@ -43,14 +50,41 @@ const windowsOptions = {
             ]
         })
     },
-    step2: {
+    step3: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: "Я не знаю розмір", callback_data: "unknownSize" }]
+                [{ text: "60мм", callback_data: "60mm" }, { text: "70мм", callback_data: "70mm" }, { text: "85мм", callback_data: "85mm" }],
+                [{ text: "Що таке профиль?", callback_data: "profile" }],
             ]
         })
     },
+    step3WithoutProfile: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "60мм", callback_data: "60mm" }, { text: "70мм", callback_data: "70mm" }, { text: "85мм", callback_data: "85mm" }]
+            ]
+        })
+    },
+    step4: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "Однокамерний", callback_data: "oneСhamber" }, { text: "Двокамерний", callback_data: "twoСhamber" }, { text: "Трикамерний", callback_data: "threeСhamber" }],
+                [{ text: "В чому різниця?", callback_data: "difference" }],
+            ]
+        })
+    },
+    step4WithoutDifference: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "Однокамерний", callback_data: "oneСhamber" }, { text: "Двокамерний", callback_data: "twoСhamber" }, { text: "Трикамерний", callback_data: "threeСhamber" }]
+            ]
+        })
+    }
 }
 
-module.exports = botOptions
-module.exports = windowsOptions
+const OPTIONS = {
+    botOptions,
+    windowsOptions,
+}
+
+module.exports = OPTIONS
