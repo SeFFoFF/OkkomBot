@@ -2,6 +2,7 @@ const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
 const sendData = require("../utils/sendData")
+const textValidation = require("../utils/textValidation")
 
 const botOnMessage = (bot, CHAT_STORE) => {
     bot.on("message", async (msg) => {
@@ -10,7 +11,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
         const username = msg.chat.username
 
         if (CHAT_STORE.wishes.isActive) {
-            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            textValidation(bot, chatId, msg.text, msg.sticker)
 
             CHAT_STORE.wishes = {
                 ...CHAT_STORE.wishes,
@@ -21,7 +22,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
         }
 
         if (CHAT_STORE.isOtherOption) {
-            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            textValidation(bot, chatId, msg.text, msg.sticker)
 
             if (!CHAT_STORE.requestToManager.text) {
                 CHAT_STORE.requestToManager = {
@@ -58,7 +59,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
         }
 
         if (CHAT_STORE.order.window.orderStep) {
-            if (text && text[0] === "/") return bot.sendMessage(chatId, "Помилка, у запиті не можна використовувати команди бота")
+            textValidation(bot, chatId, msg.text, msg.sticker)
 
             switch (CHAT_STORE.order.window.orderStep) {
             case 1: {

@@ -1,6 +1,5 @@
 const COMMANDS = require("../variables/commands")
 const OPTIONS = require("../variables/options")
-const sendData = require("../utils/sendData")
 
 const botOnCommands = (bot, CHAT_STORE) => {
     bot.on("message", async (msg) => {
