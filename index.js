@@ -9,8 +9,11 @@ const botOnMessage = require("./bot/botOnMessage")
 const botOnCallbackQuery = require("./bot/botOnCallbackQuery")
 
 const CHAT_STORE = {
-    isOtherOption: false,
+    botState: {
+        action: "MENU", // MENU, REQUEST
+    },
     requestToManager: {
+        isActive: false,
         text: "",
         phoneNumber: ""
     },
@@ -37,8 +40,8 @@ const CHAT_STORE = {
 const start = () => {
     botSetMyCommands(bot, CHAT_STORE)
     botOnCommands(bot, CHAT_STORE)
-    botOnMessage(bot, CHAT_STORE)
     botOnCallbackQuery(bot, CHAT_STORE)
+    botOnMessage(bot, CHAT_STORE)
 }
 
 start()

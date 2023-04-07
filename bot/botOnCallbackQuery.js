@@ -19,7 +19,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
 
                 return bot.sendMessage(chatId, "Чекаємо на Ваш коментар!")
             } else {
-                await sendData(bot, CHAT_STORE, chatId, username)
+                await sendData(bot, CHAT_STORE, chatId, username, "window")
             }
         }
 
@@ -127,6 +127,11 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
             return bot.sendMessage(chatId, "Металопластикові конструкції", OPTIONS.botOptions.metalPlasticConstructions)
         }
         case SERVICES.metalPlasticConstructions.types.windows.callbackData: {
+            CHAT_STORE.botState = {
+                ...CHAT_STORE.botState,
+                action: "REQUEST"
+            }
+
             CHAT_STORE.order.window = {
                 ...CHAT_STORE.order.window,
                 orderStep: 1
@@ -149,10 +154,16 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
             return bot.sendSticker(chatId, "https://img-04.stickers.cloud/packs/3a61acd0-d362-45f5-9307-2c9c99ac0bbe/webp/96a802c4-9e6c-4354-aa90-229db45583c6.webp")
         }
         case SERVICES.other.callbackData: {
-            CHAT_STORE = {
-                ...CHAT_STORE,
-                isOtherOption: true
+            CHAT_STORE.botState = {
+                ...CHAT_STORE.botState,
+                action: "REQUEST"
             }
+
+            CHAT_STORE.requestToManager = {
+                ...CHAT_STORE.requestToManager,
+                isActive: true
+            }
+
             return bot.sendMessage(chatId, "Залишіть будь ласка ваше повідомлення і наш менеджер з Вами зв'яжеться", OPTIONS.botOptions.cancel)
         }
         default: return undefined

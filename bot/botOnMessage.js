@@ -1,4 +1,3 @@
-const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
 const sendData = require("../utils/sendData")
@@ -10,21 +9,20 @@ const botOnMessage = (bot, CHAT_STORE) => {
         const chatId = msg.chat.id
         const username = msg.chat.username
 
-        if (CHAT_STORE.wishes.isActive) {
-            textValidation(bot, chatId, msg.text, msg.sticker)
+        let isTextValid = false
 
+        if (CHAT_STORE.botState.action === "REQUEST") isTextValid = await textValidation(bot, chatId, msg.text, msg.sticker)
+
+        if (CHAT_STORE.wishes.isActive && isTextValid) {
             CHAT_STORE.wishes = {
                 ...CHAT_STORE.wishes,
                 wishesText: text
             }
-
-            await sendData(bot, CHAT_STORE, chatId, username)
+            await sendData(bot, CHAT_STORE, chatId, username, CHAT_STORE.order.whatIsOrdered)
         }
 
-        if (CHAT_STORE.isOtherOption) {
-            textValidation(bot, chatId, msg.text, msg.sticker)
-
-            if (!CHAT_STORE.requestToManager.text) {
+        if (CHAT_STORE.requestToManager.isActive && isTextValid) {
+            if (!CHAT_STORE.requestToManager.text && isTextValid) {
                 CHAT_STORE.requestToManager = {
                     ...CHAT_STORE.requestToManager,
                     text: text
@@ -35,32 +33,11 @@ const botOnMessage = (bot, CHAT_STORE) => {
                     ...CHAT_STORE.requestToManager,
                     phoneNumber: text
                 }
-
-                try {
-                    const message = `Отримано запит від користувача @${username}. Запит: "${CHAT_STORE.requestToManager.text}", номер телефону: ${CHAT_STORE.requestToManager.phoneNumber}`
-                    const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${MANAGERS.okkom}&text=${message}`
-
-                    await fetch(url)
-
-                    CHAT_STORE.requestToManager = {
-                        text: "",
-                        phoneNumber: ""
-                    }
-                    CHAT_STORE = {
-                        ...CHAT_STORE,
-                        isOtherOption: false
-                    }
-
-                    return bot.sendMessage(chatId, "Запит прийнят, незабаром з Вами зв'яжеться наш менеджер!", OPTIONS.botOptions.welcome)
-                } catch (error) {
-                    return bot.sendMessage(chatId, "Помилка, запит не надіслано, спробуйте пізніше", OPTIONS.botOptions.welcome)
-                }
+                await sendData(bot, CHAT_STORE, chatId, username)
             }
         }
 
-        if (CHAT_STORE.order.window.orderStep) {
-            textValidation(bot, chatId, msg.text, msg.sticker)
-
+        if (CHAT_STORE.order.window.orderStep && isTextValid) {
             switch (CHAT_STORE.order.window.orderStep) {
             case 1: {
                 if (text < 1 || text > 16 || Number.isNaN(Number(text))) return bot.sendMessage(chatId, "Помилка, оберіть вінко від 1 до 16")
