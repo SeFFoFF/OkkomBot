@@ -9,6 +9,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
         const chatId = msg.message.chat.id
         const username = msg.message.chat.username
 
+        const form = { chat_id: msg.from.id, message_id: msg.message.message_id }
+
         if (CHAT_STORE.wishes.isReadyToWishes) {
             if (data === "yes") {
                 CHAT_STORE.wishes = {
@@ -17,7 +19,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     isActive: true
                 }
 
-                return bot.sendMessage(chatId, "Чекаємо на Ваш коментар!")
+                return bot.editMessageText("Чекаємо на Ваш коментар!", form)
             } else {
                 await sendData(bot, CHAT_STORE, chatId, username, "window")
             }
@@ -26,7 +28,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
         if (CHAT_STORE.order.window.orderStep) {
             switch (data) {
             case "profile": {
-                return bot.sendMessage(chatId, "*Пояснення що таке профіль*", OPTIONS.windowsOptions.step3WithoutProfile)
+                await bot.editMessageText("*Пояснення що таке профіль*", form)
+                return bot.editMessageReplyMarkup(OPTIONS.windowsOptions.step3WithoutProfile, form)
             }
             case "60mm": {
                 CHAT_STORE.order.window = {
@@ -34,7 +37,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     orderStep: 4,
                     profile: "60мм"
                 }
-                return bot.sendMessage(chatId, "Який Ви бажаєте склопакет?", OPTIONS.windowsOptions.step4)
+                await bot.editMessageText("Який Ви бажаєте склопакет?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.windowsOptions.step4, form)
             }
             case "70mm": {
                 CHAT_STORE.order.window = {
@@ -42,7 +46,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     orderStep: 4,
                     profile: "70мм"
                 }
-                return bot.sendMessage(chatId, "Який Ви бажаєте склопакет?", OPTIONS.windowsOptions.step4)
+                await bot.editMessageText("Який Ви бажаєте склопакет?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.windowsOptions.step4, form)
             }
             case "85mm": {
                 CHAT_STORE.order.window = {
@@ -50,10 +55,12 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     orderStep: 4,
                     profile: "85мм"
                 }
-                return bot.sendMessage(chatId, "Який Ви бажаєте склопакет?", OPTIONS.windowsOptions.step4)
+                await bot.editMessageText("Який Ви бажаєте склопакет?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.windowsOptions.step4, form)
             }
             case "difference": {
-                return bot.sendMessage(chatId, "*Пояснення різниці*", OPTIONS.windowsOptions.step4WithoutDifference)
+                await bot.editMessageText("*Пояснення різниці*", form)
+                return bot.editMessageReplyMarkup(OPTIONS.windowsOptions.step4WithoutDifference, form)
             }
             case "oneСhamber": {
                 CHAT_STORE.order = {
@@ -72,7 +79,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     isReadyToWishes: true
                 }
 
-                return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishes)
+                await bot.editMessageText("Бажаєте залишити коментар чи побажання?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.wishes, form)
             }
             case "twoСhamber": {
                 CHAT_STORE.order = {
@@ -91,7 +99,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     isReadyToWishes: true
                 }
 
-                return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishes)
+                await bot.editMessageText("Бажаєте залишити коментар чи побажання?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.wishes, form)
             }
             case "threeСhamber": {
                 CHAT_STORE.order = {
@@ -110,7 +119,8 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     isReadyToWishes: true
                 }
 
-                return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishes)
+                await bot.editMessageText("Бажаєте залишити коментар чи побажання?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.wishes, form)
             }
             default: return null
             }
@@ -118,13 +128,16 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
 
         switch (data) {
         case "ourServices": {
-            return bot.sendMessage(chatId, "Послуги, які ми надаємо", OPTIONS.botOptions.services)
+            await bot.editMessageText("Послуги, які ми надаємо", form)
+            return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
         }
         case "cancel": {
-            return bot.sendMessage(chatId, "Послуги, які ми надаємо", OPTIONS.botOptions.services)
+            await bot.editMessageText("Послуги ОККОМ", form)
+            return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
         }
         case SERVICES.metalPlasticConstructions.callbackData: {
-            return bot.sendMessage(chatId, "Металопластикові конструкції", OPTIONS.botOptions.metalPlasticConstructions)
+            await bot.editMessageText("Металопластикові конструкції", form)
+            return bot.editMessageReplyMarkup(OPTIONS.botOptions.metalPlasticConstructions, form)
         }
         case SERVICES.metalPlasticConstructions.types.windows.callbackData: {
             CHAT_STORE.botState = {
@@ -137,7 +150,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 orderStep: 1
             }
 
-            await bot.sendMessage(chatId, "Оберіть вінко з представлених нижче (вiд 1 до 16)")
+            await bot.editMessageText("Оберіть вінко з представлених нижче (вiд 1 до 16)", form)
             return bot.sendPhoto(chatId, "https://raw.githubusercontent.com/SeFFoFF/OkkomBot/main/images/windows.jpg")
         }
 

@@ -3,10 +3,13 @@ const fetch = require("node-fetch")
 const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
+const addRequestToJson = require("../utils/addRequestToJson")
+
 const TOKEN = process.env.TELEGRAM_API_TOKEN
 
 const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     let message = ""
+    let requestObject = {}
 
     switch (order) {
     case "window": {
@@ -19,7 +22,21 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                     Склопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>
                     Замовник: <b>@${username}</b>
                     Коментар: <b>${CHAT_STORE.wishes.wishesText}</b>
-                `
+            `
+
+            requestObject = {
+                date: new Date(),
+                whatIsOrdered: "Вікно",
+                type: CHAT_STORE.order.window.type,
+                sizes: {
+                    width: CHAT_STORE.order.window.sizes.width,
+                    height: CHAT_STORE.order.window.sizes.height
+                },
+                profile: CHAT_STORE.order.window.profile,
+                doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
+                user: username,
+                wish: CHAT_STORE.wishes.wishesText
+            }
         } else {
             message = `
                     <u>Отримано замовлення</u>
@@ -28,7 +45,20 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                     Профіль: <b>${CHAT_STORE.order.window.profile}</b>
                     Склопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>
                     Замовник: <b>@${username}</b>
-                `
+            `
+
+            requestObject = {
+                date: new Date(),
+                whatIsOrdered: "Вікно",
+                type: CHAT_STORE.order.window.type,
+                sizes: {
+                    width: CHAT_STORE.order.window.sizes.width,
+                    height: CHAT_STORE.order.window.sizes.height
+                },
+                profile: CHAT_STORE.order.window.profile,
+                doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
+                user: username
+            }
         }
 
         CHAT_STORE.order.window = {
@@ -66,6 +96,8 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
         await fetch(url)
         await fetch(urlForTheTest)
 
+        addRequestToJson(requestObject)
+
         CHAT_STORE.order = {
             ...CHAT_STORE.order,
             whatIsOrdered: "",
@@ -82,9 +114,9 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
             action: "MENU"
         }
 
-        return bot.sendMessage(chatId, "Запит прийнят, незабаром з Вами зв'яжеться наш менеджер!", OPTIONS.botOptions.cancel)
+        return bot.sendMessage(chatId, "Запит прийнят, незабаром з Вами зв'яжеться наш менеджер!", OPTIONS.botOptions.servicesWithMarkup)
     } catch (error) {
-        return bot.sendMessage(chatId, "Помилка, запит не надіслано, спробуйте пізніше", OPTIONS.botOptions.cancel)
+        return bot.sendMessage(chatId, "Помилка, запит не надіслано, спробуйте пізніше", OPTIONS.botOptions.servicesWithMarkup)
     }
 }
 

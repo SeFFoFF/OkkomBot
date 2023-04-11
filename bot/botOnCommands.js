@@ -12,7 +12,7 @@ const botOnCommands = (bot, CHAT_STORE) => {
             }
 
             if (text === COMMANDS.services.command) {
-                return bot.sendMessage(chatId, "Нижче наведені послуги, які ми надаємо", OPTIONS.botOptions.services)
+                return bot.sendMessage(chatId, "Нижче наведені послуги, які ми надаємо", OPTIONS.botOptions.servicesWithMarkup)
             }
 
             return bot.sendMessage(chatId, "Кх-кхм, не розумію про що ти... Вибери одну із запропонованих мною команд", OPTIONS.botOptions.services)
