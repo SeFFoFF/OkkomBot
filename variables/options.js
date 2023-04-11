@@ -11,9 +11,12 @@ const botOptions = {
     services: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: SERVICES.metalPlasticConstructions.text, callback_data: SERVICES.metalPlasticConstructions.callbackData }, { text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
-                [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }, { text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
+                [{ text: SERVICES.metalPlasticConstructions.text, callback_data: SERVICES.metalPlasticConstructions.callbackData }],
+                [{ text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
+                [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }],
+                [{ text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
                 [{ text: SERVICES.other.text, callback_data: SERVICES.other.callbackData }],
+                [{ text: "Наш сайт", web_app: { url: "https://okkom.com.ua/" } }],
             ]
         })
     },

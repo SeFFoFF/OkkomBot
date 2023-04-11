@@ -121,7 +121,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
             return bot.sendMessage(chatId, "Послуги, які ми надаємо", OPTIONS.botOptions.services)
         }
         case "cancel": {
-            return bot.sendMessage(chatId, "Пслуги, які ми надаємо", OPTIONS.botOptions.services)
+            return bot.sendMessage(chatId, "Послуги, які ми надаємо", OPTIONS.botOptions.services)
         }
         case SERVICES.metalPlasticConstructions.callbackData: {
             return bot.sendMessage(chatId, "Металопластикові конструкції", OPTIONS.botOptions.metalPlasticConstructions)
@@ -164,7 +164,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 isActive: true
             }
 
-            return bot.sendMessage(chatId, "Залишіть будь ласка ваше повідомлення і наш менеджер з Вами зв'яжеться", OPTIONS.botOptions.cancel)
+            return bot.sendMessage(chatId, "Залиште, будь ласка, ваше повідомлення і наш менеджер з Вами зв'яжеться", OPTIONS.botOptions.cancel)
         }
         default: return undefined
         }
