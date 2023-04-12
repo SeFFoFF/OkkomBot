@@ -1,6 +1,6 @@
 const fs = require("fs")
 
-const addRequestToJson = (object) => {
+const writeData = (object) => {
     const appendObjectToArray = () => {
         fs.readFile("db/orders.json", "utf8", (err, data) => {
             if (err) throw err
@@ -29,4 +29,4 @@ const addRequestToJson = (object) => {
     })
 }
 
-module.exports = addRequestToJson
+module.exports = writeData

@@ -1,10 +1,24 @@
 const COMMANDS = require("../variables/commands")
 const OPTIONS = require("../variables/options")
 
+const readData = require("../utils/readData")
+
 const botOnCommands = (bot, CHAT_STORE) => {
     bot.on("message", async (msg) => {
         const text = msg.text
         const chatId = msg.chat.id
+
+        const loadJsonFile = async() => {
+            try {
+                return readData("db/orders.json")
+            } catch (err) {
+                console.error("fileRead error:", err)
+            }
+        }
+
+        const orders = await loadJsonFile()
+
+        console.log(orders)
 
         if (CHAT_STORE.botState.action === "MENU") {
             if (text === COMMANDS.start.command) {

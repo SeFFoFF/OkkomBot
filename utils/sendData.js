@@ -3,7 +3,7 @@ const fetch = require("node-fetch")
 const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
-const addRequestToJson = require("../utils/addRequestToJson")
+const writeData = require("./writeData")
 
 const TOKEN = process.env.TELEGRAM_API_TOKEN
 
@@ -96,7 +96,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
         await fetch(url)
         await fetch(urlForTheTest)
 
-        addRequestToJson(requestObject)
+        writeData(requestObject)
 
         CHAT_STORE.order = {
             ...CHAT_STORE.order,

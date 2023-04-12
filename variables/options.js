@@ -72,13 +72,17 @@ const windowsOptions = {
     },
     step4: {
         inline_keyboard: [
-            [{ text: "Однокамерний", callback_data: "oneСhamber" }, { text: "Двокамерний", callback_data: "twoСhamber" }, { text: "Трикамерний", callback_data: "threeСhamber" }],
+            [{ text: "Однокамерний", callback_data: "oneСhamber" }],
+            [{ text: "Двокамерний", callback_data: "twoСhamber" }],
+            [{ text: "Трикамерний", callback_data: "threeСhamber" }],
             [{ text: "В чому різниця?", callback_data: "difference" }],
         ]
     },
     step4WithoutDifference: {
         inline_keyboard: [
-            [{ text: "Однокамерний", callback_data: "oneСhamber" }, { text: "Двокамерний", callback_data: "twoСhamber" }, { text: "Трикамерний", callback_data: "threeСhamber" }]
+            [{ text: "Однокамерний", callback_data: "oneСhamber" }],
+            [{ text: "Двокамерний", callback_data: "twoСhamber" }],
+            [{ text: "Трикамерний", callback_data: "threeСhamber" }],
         ]
     }
 }
