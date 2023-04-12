@@ -26,7 +26,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
 
             requestObject = {
                 date: new Date(),
-                whatIsOrdered: "Вікно",
+                whatIsOrdered: "window",
                 type: CHAT_STORE.order.window.type,
                 sizes: {
                     width: CHAT_STORE.order.window.sizes.width,
@@ -34,7 +34,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 },
                 profile: CHAT_STORE.order.window.profile,
                 doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
-                user: username,
+                username,
                 wish: CHAT_STORE.wishes.wishesText
             }
         } else {
@@ -49,7 +49,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
 
             requestObject = {
                 date: new Date(),
-                whatIsOrdered: "Вікно",
+                whatIsOrdered: "window",
                 type: CHAT_STORE.order.window.type,
                 sizes: {
                     width: CHAT_STORE.order.window.sizes.width,
@@ -57,7 +57,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 },
                 profile: CHAT_STORE.order.window.profile,
                 doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
-                user: username
+                username
             }
         }
 

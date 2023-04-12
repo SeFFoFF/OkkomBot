@@ -9,31 +9,20 @@
     },
     "profile": "85мм",
     "doubleGlazedWindows": "Трикамерний",
-    "user": "SeFFoFF",
+    "username": "SeFFoFF",
     "wish": "Хачу бiг маk"
   },
   {
-    "date": "2023-04-11T09:23:09.143Z",
+    "date": "2023-04-12T17:09:01.263Z",
     "whatIsOrdered": "window",
-    "type": 5,
+    "type": 3,
     "sizes": {
-      "width": 140,
-      "height": 220
+      "width": 330,
+      "height": 200
     },
-    "profile": "70мм",
-    "doubleGlazedWindows": "Двокамерний",
-    "user": "SeFFoFF"
-  },
-  {
-    "date": "2023-04-11T09:25:57.566Z",
-    "whatIsOrdered": "Вікно",
-    "type": 16,
-    "sizes": {
-      "width": 16,
-      "height": 16
-    },
-    "profile": "85мм",
-    "doubleGlazedWindows": "Однокамерний",
-    "user": "SeFFoFF"
+    "profile": "60мм",
+    "doubleGlazedWindows": "Трикамерний",
+    "username": "SeFFoFF",
+    "wish": "Быстро"
   }
 ]

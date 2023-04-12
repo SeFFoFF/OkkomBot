@@ -11,6 +11,7 @@ const botOnCallbackQuery = require("./bot/botOnCallbackQuery")
 const CHAT_STORE = {
     botState: {
         action: "MENU", // MENU, REQUEST
+        isUserManager: false
     },
     requestToManager: {
         isActive: false,
