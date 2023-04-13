@@ -4,6 +4,7 @@ const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
 const writeData = require("./writeData")
+const formatDate = require("./formatDate")
 
 const TOKEN = process.env.TELEGRAM_API_TOKEN
 
@@ -14,15 +15,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     switch (order) {
     case "window": {
         if (CHAT_STORE.wishes.wishesText) {
-            message = `
-                    <u>Отримано замовлення</u>
-                    Вікно №<b>${CHAT_STORE.order.window.type}</b>
-                    Розміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>
-                    Профіль: <b>${CHAT_STORE.order.window.profile}</b>
-                    Склопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>
-                    Замовник: <b>@${username}</b>
-                    Коментар: <b>${CHAT_STORE.wishes.wishesText}</b>
-            `
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
 
             requestObject = {
                 date: new Date(),
@@ -38,14 +31,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 wish: CHAT_STORE.wishes.wishesText
             }
         } else {
-            message = `
-                    <u>Отримано замовлення</u>
-                    Вікно №<b>${CHAT_STORE.order.window.type}</b>
-                    Розміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>
-                    Профіль: <b>${CHAT_STORE.order.window.profile}</b>
-                    Склопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>
-                    Замовник: <b>@${username}</b>
-            `
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________`
 
             requestObject = {
                 date: new Date(),
@@ -89,12 +75,11 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     }
     }
 
-    const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${MANAGERS.okkom}&text=${message}&parse_mode=HTML`
-    const urlForTheTest = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${335150059}&text=${message}&parse_mode=HTML`
-
     try {
-        await fetch(url)
-        await fetch(urlForTheTest)
+        const testID = 335150059
+
+        await bot.sendMessage(MANAGERS.okkom, message, { parse_mode: "HTML" })
+        await bot.sendMessage(testID, message, { parse_mode: "HTML" })
 
         writeData(requestObject)
 

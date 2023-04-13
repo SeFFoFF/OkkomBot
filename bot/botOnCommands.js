@@ -30,23 +30,22 @@ const botOnCommands = (bot, CHAT_STORE) => {
 
                 const orders = await loadJsonFile()
 
-                orders.forEach(order => {
+                for (const order of orders) {
                     let message = ""
 
                     switch (order.whatIsOrdered) {
                     case "window": {
-                        const date = new Date(order.date)
-
                         if (order.wish)
-                            message = `Дата замовлення: <b>${formatDate(date)}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\nКоментар: <b>${order.wish}</b>\n_________________________________`
+                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
                         else
-                            message = `Дата замовлення: <b>${formatDate(date)}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________`
+                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________`
                         break
                     }
                     default: return null
                     }
-                    return bot.sendMessage(chatId, message, { parse_mode: "HTML" })
-                })
+
+                    await bot.sendMessage(chatId, message, { parse_mode: "HTML" })
+                }
             }
 
             if (text === COMMANDS.start.command) {
