@@ -21,7 +21,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
 
                 return bot.editMessageText("Чекаємо на Ваш коментар!", form)
             } else {
-                await sendData(bot, CHAT_STORE, chatId, username, "window")
+                await sendData(bot, CHAT_STORE, chatId, username, CHAT_STORE.order.whatIsOrdered)
             }
         }
 
@@ -130,6 +130,114 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
             }
         }
 
+        if (CHAT_STORE.order.mosquitoNets.orderStep) {
+            switch (data) {
+            case "external": {
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 2,
+                    type: "Зовнішня"
+                }
+
+                await bot.editMessageText("Який колір Ви бажаєте?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step2, form)
+            }
+            case "internal": {
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 2,
+                    type: "Внутрішня"
+                }
+
+                await bot.editMessageText("Який колір Ви бажаєте?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step2, form)
+            }
+            case "door": {
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 2,
+                    type: "Дверна"
+                }
+
+                await bot.editMessageText("Який колір Ви бажаєте?", form)
+                return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step2, form)
+            }
+
+
+            case "white": {
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    whatIsOrdered: "mosquitoNets"
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 3,
+                    color: "Білий"
+                }
+
+                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+            }
+            case "anthracite": {
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    whatIsOrdered: "mosquitoNets"
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 3,
+                    color: "Антрацит"
+                }
+
+                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+            }
+            case "goldenOak": {
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    whatIsOrdered: "mosquitoNets"
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 3,
+                    color: "Золотий дуб"
+                }
+
+                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+            }
+            case "nut": {
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    whatIsOrdered: "mosquitoNets"
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 3,
+                    color: "Горіх"
+                }
+
+                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+            }
+            case "darkOak": {
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    whatIsOrdered: "mosquitoNets"
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: 3,
+                    color: "Темний дуб"
+                }
+
+                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+            }
+            default: return null
+            }
+        }
+
         switch (data) {
         case "ourServices": {
             await bot.editMessageText("Послуги, які ми надаємо", form)
@@ -156,6 +264,20 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
 
             await bot.editMessageText("Оберіть вінко з представлених нижче (вiд 1 до 16)", form)
             return bot.sendPhoto(chatId, "https://raw.githubusercontent.com/SeFFoFF/OkkomBot/main/images/windows.jpg")
+        }
+        case SERVICES.metalPlasticConstructions.types.mosquitoNets.callbackData: {
+            CHAT_STORE.botState = {
+                ...CHAT_STORE.botState,
+                action: "REQUEST"
+            }
+
+            CHAT_STORE.order.mosquitoNets = {
+                ...CHAT_STORE.order.mosquitoNets,
+                orderStep: 1
+            }
+
+            await bot.editMessageText("Яка москітна сітка Вам необхідна?", form)
+            return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step1, form)
         }
 
         case SERVICES.interiorDoor.callbackData: {

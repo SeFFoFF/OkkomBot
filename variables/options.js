@@ -44,6 +44,7 @@ const botOptions = {
             [{ text: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.text, callback_data: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.callbackData }, { text: "<< Назад", callback_data: "cancel" }],
         ]
     },
+
     cancel: {
         inline_keyboard: [
             [{ text: "Повернутися назад", callback_data: "cancel" }],
@@ -53,6 +54,13 @@ const botOptions = {
         inline_keyboard: [
             [{ text: "Так", callback_data: "yes" }, { text: "Нi", callback_data: "no" }],
         ]
+    },
+    wishesWithMarkup: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "Так", callback_data: "yes" }, { text: "Нi", callback_data: "no" }],
+            ]
+        })
     }
 }
 
@@ -94,9 +102,24 @@ const windowsOptions = {
     }
 }
 
+const mosquitoNetsOptions = {
+    step1: {
+        inline_keyboard: [
+            [{ text: "Зовнішня", callback_data: "external" }, { text: "Внутрішня", callback_data: "internal" }, { text: "Дверна", callback_data: "door" }]
+        ]
+    },
+    step2: {
+        inline_keyboard: [
+            [{ text: "Білий", callback_data: "white" }, { text: "Антрацит", callback_data: "anthracite" }, { text: "Золотий дуб", callback_data: "goldenOak" }],
+            [{ text: "Горіх", callback_data: "nut" }, { text: "Темний дуб", callback_data: "darkOak" }]
+        ]
+    },
+}
+
 const OPTIONS = {
     botOptions,
     windowsOptions,
+    mosquitoNetsOptions
 }
 
 module.exports = OPTIONS

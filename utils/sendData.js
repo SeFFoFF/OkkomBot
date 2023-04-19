@@ -1,12 +1,7 @@
-const fetch = require("node-fetch")
-
 const MANAGERS = require("../variables/managers")
 const OPTIONS = require("../variables/options")
 
 const writeData = require("./writeData")
-const formatDate = require("./formatDate")
-
-const TOKEN = process.env.TELEGRAM_API_TOKEN
 
 const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     let message = ""
@@ -56,6 +51,49 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
             },
             profile: 0,
             doubleGlazedWindows: ""
+        }
+        break
+    }
+    case "mosquitoNets": {
+        if (CHAT_STORE.wishes.wishesText) {
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
+
+            requestObject = {
+                date: new Date(),
+                whatIsOrdered: "mosquitoNets",
+                type: CHAT_STORE.order.mosquitoNets.type,
+                sizes: {
+                    width: CHAT_STORE.order.mosquitoNets.sizes.width,
+                    height: CHAT_STORE.order.mosquitoNets.sizes.height
+                },
+                color: CHAT_STORE.order.mosquitoNets.color,
+                username,
+                wish: CHAT_STORE.wishes.wishesText
+            }
+        } else {
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________`
+
+            requestObject = {
+                date: new Date(),
+                whatIsOrdered: "mosquitoNets",
+                type: CHAT_STORE.order.mosquitoNets.type,
+                sizes: {
+                    width: CHAT_STORE.order.mosquitoNets.sizes.width,
+                    height: CHAT_STORE.order.mosquitoNets.sizes.height
+                },
+                color: CHAT_STORE.order.mosquitoNets.color,
+                username
+            }
+        }
+
+        CHAT_STORE.order.mosquitoNets = {
+            orderStep: null,
+            type: null,
+            sizes: {
+                width: 0,
+                height: 0
+            },
+            color: null,
         }
         break
     }

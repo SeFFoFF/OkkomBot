@@ -77,6 +77,36 @@ const botOnMessage = (bot, CHAT_STORE) => {
             default: return null
             }
         }
+
+        if (CHAT_STORE.order.mosquitoNets.orderStep === 3 && isTextValid) {
+            if (text < 1 || Number.isNaN(Number(text))) return bot.sendMessage(chatId, "Помилка, введіть правильне значення")
+
+            if (!CHAT_STORE.order.mosquitoNets.sizes.width) {
+                CHAT_STORE.order.mosquitoNets.sizes = {
+                    ...CHAT_STORE.order.mosquitoNets.sizes,
+                    width: Number(text)
+                }
+
+                return bot.sendMessage(chatId, "Введіть висоту вікна (см)")
+            } else {
+                CHAT_STORE.order.mosquitoNets.sizes = {
+                    ...CHAT_STORE.order.mosquitoNets.sizes,
+                    height: Number(text)
+                }
+
+                CHAT_STORE.order.mosquitoNets = {
+                    ...CHAT_STORE.order.mosquitoNets,
+                    orderStep: null
+                }
+
+                CHAT_STORE.wishes = {
+                    ...CHAT_STORE.wishes,
+                    isReadyToWishes: true
+                }
+
+                return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishesWithMarkup)
+            }
+        }
     })
 }
 

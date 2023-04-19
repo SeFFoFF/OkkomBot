@@ -41,6 +41,13 @@ const botOnCommands = (bot, CHAT_STORE) => {
                             message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________`
                         break
                     }
+                    case "mosquitoNets": {
+                        if (order.wish)
+                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
+                        else
+                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________`
+                        break
+                    }
                     default: return null
                     }
 

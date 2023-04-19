@@ -29,6 +29,15 @@ const CHAT_STORE = {
             },
             profile: 0, // 60mm, 70mm, 85mm
             doubleGlazedWindows: "", // однокамерний, двокамерний, трикамерний
+        },
+        mosquitoNets: {
+            orderStep: null,
+            type: null, // зовнішня, внутрішня, дверна
+            color: null, // Білий, Антрацит, Золотий дуб, Горіх, Темний дуб
+            sizes: {
+                width: 0,
+                height: 0
+            }
         }
     },
     wishes: {

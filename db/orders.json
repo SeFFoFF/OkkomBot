@@ -13,44 +13,6 @@
     "wish": "Хачу бiг маk"
   },
   {
-    "date": "2023-04-12T17:09:01.263Z",
-    "whatIsOrdered": "window",
-    "type": 3,
-    "sizes": {
-      "width": 330,
-      "height": 200
-    },
-    "profile": "60мм",
-    "doubleGlazedWindows": "Трикамерний",
-    "username": "SeFFoFF",
-    "wish": "Быстро"
-  },
-  {
-    "date": "2023-04-13T13:09:22.906Z",
-    "whatIsOrdered": "window",
-    "type": 5,
-    "sizes": {
-      "width": 5,
-      "height": 5
-    },
-    "profile": "60мм",
-    "doubleGlazedWindows": "Трикамерний",
-    "username": "SeFFoFF"
-  },
-  {
-    "date": "2023-04-13T13:10:01.233Z",
-    "whatIsOrdered": "window",
-    "type": 14,
-    "sizes": {
-      "width": 14,
-      "height": 14
-    },
-    "profile": "70мм",
-    "doubleGlazedWindows": "Трикамерний",
-    "username": "SeFFoFF",
-    "wish": "test"
-  },
-  {
     "date": "2023-04-13T13:10:50.363Z",
     "whatIsOrdered": "window",
     "type": 2,
@@ -64,19 +26,6 @@
     "wish": "test 2 test"
   },
   {
-    "date": "2023-04-13T13:17:05.632Z",
-    "whatIsOrdered": "window",
-    "type": 9,
-    "sizes": {
-      "width": 90,
-      "height": 130
-    },
-    "profile": "70мм",
-    "doubleGlazedWindows": "Двокамерний",
-    "username": "SeFFoFF",
-    "wish": "DA DA YA"
-  },
-  {
     "date": "2023-04-13T13:27:32.488Z",
     "whatIsOrdered": "window",
     "type": 11,
@@ -88,5 +37,28 @@
     "doubleGlazedWindows": "Трикамерний",
     "username": "SeFFoFF",
     "wish": "аывпд равпщ оврпзшщ уок зпщо щз34е34 ео-9ао о ывзщао зыщвоа щз20-3к гоо зщвыом -92- 49оа- 34о-м о3-"
+  },
+  {
+    "date": "2023-04-19T11:25:02.679Z",
+    "whatIsOrdered": "mosquitoNets",
+    "type": "Дверна",
+    "sizes": {
+      "width": 90,
+      "height": 180
+    },
+    "color": "Антрацит",
+    "username": "SeFFoFF"
+  },
+  {
+    "date": "2023-04-19T11:32:18.874Z",
+    "whatIsOrdered": "mosquitoNets",
+    "type": "Зовнішня",
+    "sizes": {
+      "width": 180,
+      "height": 90
+    },
+    "color": "Темний дуб",
+    "username": "SeFFoFF",
+    "wish": "тест сообщение"
   }
 ]
