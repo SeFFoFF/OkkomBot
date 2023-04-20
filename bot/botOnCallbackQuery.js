@@ -162,8 +162,6 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 await bot.editMessageText("Який колір Ви бажаєте?", form)
                 return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step2, form)
             }
-
-
             case "white": {
                 CHAT_STORE.order = {
                     ...CHAT_STORE.order,
@@ -176,7 +174,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Білий"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
             }
             case "anthracite": {
                 CHAT_STORE.order = {
@@ -190,7 +188,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Антрацит"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
             }
             case "goldenOak": {
                 CHAT_STORE.order = {
@@ -204,7 +202,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Золотий дуб"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
             }
             case "nut": {
                 CHAT_STORE.order = {
@@ -218,7 +216,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Горіх"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
             }
             case "darkOak": {
                 CHAT_STORE.order = {
@@ -232,7 +230,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Темний дуб"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
             }
             default: return null
             }

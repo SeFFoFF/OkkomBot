@@ -87,7 +87,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
                     width: Number(text)
                 }
 
-                return bot.sendMessage(chatId, "Введіть висоту вікна (см)")
+                return bot.sendMessage(chatId, "Введіть висоту конструкції (см)")
             } else {
                 CHAT_STORE.order.mosquitoNets.sizes = {
                     ...CHAT_STORE.order.mosquitoNets.sizes,
