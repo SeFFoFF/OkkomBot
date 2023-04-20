@@ -174,7 +174,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Білий"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції в см (наприклад: 175 чи 180.5)")
             }
             case "anthracite": {
                 CHAT_STORE.order = {
@@ -188,7 +188,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Антрацит"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції в см (наприклад: 175 чи 180.5)")
             }
             case "goldenOak": {
                 CHAT_STORE.order = {
@@ -202,7 +202,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Золотий дуб"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції в см (наприклад: 175 чи 180.5)")
             }
             case "nut": {
                 CHAT_STORE.order = {
@@ -216,7 +216,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Горіх"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції в см (наприклад: 175 чи 180.5)")
             }
             case "darkOak": {
                 CHAT_STORE.order = {
@@ -230,7 +230,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     color: "Темний дуб"
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть ширину конструкції в см (наприклад: 175 чи 180.5)")
             }
             default: return null
             }

@@ -48,7 +48,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
                     type: Number(text)
                 }
 
-                return bot.sendMessage(chatId, "Введіть ширину вікна (см)")
+                return bot.sendMessage(chatId, "Введіть ширину вікна в см (наприклад: 200 чи 160.5)")
             }
             case 2: {
                 if (text < 1 || Number.isNaN(Number(text))) return bot.sendMessage(chatId, "Помилка, введіть правильне значення")
@@ -59,7 +59,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
                         width: Number(text)
                     }
 
-                    return bot.sendMessage(chatId, "Введіть висоту вікна (см)")
+                    return bot.sendMessage(chatId, "Введіть висоту вікна в см (наприклад: 150 чи 195.5)")
                 } else {
                     CHAT_STORE.order.window.sizes = {
                         ...CHAT_STORE.order.window.sizes,
@@ -87,7 +87,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
                     width: Number(text)
                 }
 
-                return bot.sendMessage(chatId, "Введіть висоту конструкції (см)")
+                return bot.sendMessage(chatId, "Введіть висоту конструкції в см (наприклад: 210 чи 190.5)")
             } else {
                 CHAT_STORE.order.mosquitoNets.sizes = {
                     ...CHAT_STORE.order.mosquitoNets.sizes,
