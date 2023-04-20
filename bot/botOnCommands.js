@@ -30,29 +30,35 @@ const botOnCommands = (bot, CHAT_STORE) => {
 
                 const orders = await loadJsonFile()
 
-                for (const order of orders) {
-                    let message = ""
+                if (orders.length) {
+                    const text = orders.length < 5 ? "замовленя" : "замовлень"
 
-                    switch (order.whatIsOrdered) {
-                    case "window": {
-                        if (order.wish)
-                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
-                        else
-                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________`
-                        break
-                    }
-                    case "mosquitoNets": {
-                        if (order.wish)
-                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
-                        else
-                            message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________`
-                        break
-                    }
-                    default: return null
-                    }
+                    await bot.sendMessage(chatId, `Всього ${orders.length} ` + text, { parse_mode: "HTML" })
 
-                    await bot.sendMessage(chatId, message, { parse_mode: "HTML" })
-                }
+                    for (const order of orders) {
+                        let message = ""
+
+                        switch (order.whatIsOrdered) {
+                        case "window": {
+                            if (order.wish)
+                                message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
+                            else
+                                message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nВікно №<b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nПрофіль: <b>${order.profile}</b>\nСклопакет: <b>${order.doubleGlazedWindows}</b>\n_________________________________`
+                            break
+                        }
+                        case "mosquitoNets": {
+                            if (order.wish)
+                                message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________\nКоментар: <b>${order.wish}</b>`
+                            else
+                                message = `Дата замовлення: <b>${formatDate(new Date(order.date))}</b>\nЗамовник: <b>@${order.username}</b>\n_________________________________\nМоскітна сітка: <b>${order.type}</b>\nРозміри: ширина <b>${order.sizes.width}см</b>, висота <b>${order.sizes.height}см</b>\nКолір: <b>${order.color}</b>\n_________________________________`
+                            break
+                        }
+                        default: return null
+                        }
+
+                        await bot.sendMessage(chatId, message, { parse_mode: "HTML" })
+                    }
+                } else return bot.sendMessage(chatId, "Поки що немає замовлень", { parse_mode: "HTML" })
             }
 
             if (text === COMMANDS.start.command) {
