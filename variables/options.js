@@ -44,15 +44,24 @@ const botOptions = {
             [{ text: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.text, callback_data: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.callbackData }, { text: "<< Назад", callback_data: "cancel" }],
         ]
     },
+    metalPlasticConstructionsWithMarkup: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: SERVICES.metalPlasticConstructions.types.windows.text, callback_data: SERVICES.metalPlasticConstructions.types.windows.callbackData }, { text: SERVICES.metalPlasticConstructions.types.doors.text, callback_data: SERVICES.metalPlasticConstructions.types.doors.callbackData }],
+                [{ text: SERVICES.metalPlasticConstructions.types.partitions.text, callback_data: SERVICES.metalPlasticConstructions.types.partitions.callbackData }, { text: SERVICES.metalPlasticConstructions.types.mosquitoNets.text, callback_data: SERVICES.metalPlasticConstructions.types.mosquitoNets.callbackData }],
+                [{ text: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.text, callback_data: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.callbackData }, { text: "<< Назад", callback_data: "cancel" }],
+            ]
+        })
+    },
     cancel: {
         inline_keyboard: [
-            [{ text: "Повернутися назад", callback_data: "cancel" }],
+            [{ text: "<< Назад", callback_data: "cancel" }],
         ]
     },
     cancelWithMarkup: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: "Повернутися назад", callback_data: "cancel" }],
+                [{ text: "<< Назад", callback_data: "cancel" }],
             ]
         })
     },
@@ -111,7 +120,8 @@ const windowsOptions = {
 const mosquitoNetsOptions = {
     step1: {
         inline_keyboard: [
-            [{ text: "Зовнішня", callback_data: "external" }, { text: "Внутрішня", callback_data: "internal" }, { text: "Дверна", callback_data: "door" }]
+            [{ text: "Зовнішня", callback_data: "external" }, { text: "Внутрішня", callback_data: "internal" }, { text: "Дверна", callback_data: "door" }],
+            [{ text: "<< Назад", callback_data: "cancel" }],
         ]
     },
     step2: {
