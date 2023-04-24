@@ -20,15 +20,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 await bot.editMessageText("Послуги, які ми надаємо", form)
                 return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
             }
-            case "cancel": {
-                await bot.editMessageText("Послуги ОККОМ", form)
-                return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
-            }
-            case SERVICES.metalPlasticConstructions.callbackData: {
-                await bot.editMessageText("Металопластикові конструкції", form)
-                return bot.editMessageReplyMarkup(OPTIONS.botOptions.metalPlasticConstructions, form)
-            }
-            case SERVICES.metalPlasticConstructions.types.windows.callbackData: {
+            case SERVICES.windows.callbackData: {
                 CHAT_STORE.botState = {
                     ...CHAT_STORE.botState,
                     action: "REQUEST"
@@ -42,7 +34,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 await bot.editMessageText("Оберіть вінко з представлених нижче (вiд 1 до 16)", form)
                 return bot.sendPhoto(chatId, "https://raw.githubusercontent.com/SeFFoFF/OkkomBot/main/images/windows.jpg")
             }
-            case SERVICES.metalPlasticConstructions.types.mosquitoNets.callbackData: {
+            case SERVICES.mosquitoNets.callbackData: {
                 CHAT_STORE.botState = {
                     ...CHAT_STORE.botState,
                     action: "REQUEST"
@@ -56,19 +48,6 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 await bot.editMessageText("Яка москітна сітка Вам необхідна?", form)
                 return bot.editMessageReplyMarkup(OPTIONS.mosquitoNetsOptions.step1, form)
             }
-
-            case SERVICES.interiorDoor.callbackData: {
-                await bot.sendMessage(chatId, "ВЕДУТСЯ РАБОТЫ, ВЫПЕЙТЕ ЧАШЕЧКУ КОФЕ И ПОПРОБУЙТЕ ПОЗЖЕ")
-                return bot.sendSticker(chatId, "https://img-04.stickers.cloud/packs/3a61acd0-d362-45f5-9307-2c9c99ac0bbe/webp/96a802c4-9e6c-4354-aa90-229db45583c6.webp")
-            }
-            case SERVICES.protectiveShutters.callbackData: {
-                await bot.sendMessage(chatId, "ВЕДУТСЯ РАБОТЫ, ВЫПЕЙТЕ ЧАШЕЧКУ КОФЕ И ПОПРОБУЙТЕ ПОЗЖЕ")
-                return bot.sendSticker(chatId, "https://img-04.stickers.cloud/packs/3a61acd0-d362-45f5-9307-2c9c99ac0bbe/webp/96a802c4-9e6c-4354-aa90-229db45583c6.webp")
-            }
-            case SERVICES.rollerBlinds.callbackData: {
-                await bot.sendMessage(chatId, "ВЕДУТСЯ РАБОТЫ, ВЫПЕЙТЕ ЧАШЕЧКУ КОФЕ И ПОПРОБУЙТЕ ПОЗЖЕ")
-                return bot.sendSticker(chatId, "https://img-04.stickers.cloud/packs/3a61acd0-d362-45f5-9307-2c9c99ac0bbe/webp/96a802c4-9e6c-4354-aa90-229db45583c6.webp")
-            }
             case SERVICES.support.callbackData: {
                 CHAT_STORE.botState = {
                     ...CHAT_STORE.botState,
@@ -80,11 +59,27 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                     isActive: true
                 }
 
-                return bot.sendMessage(chatId, "Залиште, будь ласка, ваше повідомлення і наш менеджер з Вами зв'яжеться", OPTIONS.botOptions.cancelWithMarkup)
+                await bot.editMessageText("Залиште, будь ласка, ваше повідомлення і наш менеджер з Вами зв'яжеться", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.cancel, form)
             }
             default: return undefined
             }
         } else {
+            if (data === "cancel") {
+                CHAT_STORE.botState = {
+                    ...CHAT_STORE.botState,
+                    action: "MENU"
+                }
+
+                CHAT_STORE.requestToManager = {
+                    ...CHAT_STORE.requestToManager,
+                    isActive: false
+                }
+
+                await bot.editMessageText("Послуги ОККОМ", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
+            }
+
             if (CHAT_STORE.order.window.orderStep) {
                 await getWindowOrder(bot, CHAT_STORE, data, form)
             }

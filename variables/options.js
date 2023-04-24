@@ -18,10 +18,8 @@ const botOptions = {
     servicesWithMarkup: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: SERVICES.metalPlasticConstructions.text, callback_data: SERVICES.metalPlasticConstructions.callbackData }],
-                [{ text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
-                [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }],
-                [{ text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
+                [{ text: SERVICES.windows.text, callback_data: SERVICES.windows.callbackData }],
+                [{ text: SERVICES.mosquitoNets.text, callback_data: SERVICES.mosquitoNets.callbackData }],
                 [{ text: SERVICES.support.text, callback_data: SERVICES.support.callbackData }],
                 [{ text: "Наш сайт", web_app: { url: "https://okkom.com.ua/" } }],
             ]
@@ -29,19 +27,10 @@ const botOptions = {
     },
     services: {
         inline_keyboard: [
-            [{ text: SERVICES.metalPlasticConstructions.text, callback_data: SERVICES.metalPlasticConstructions.callbackData }],
-            [{ text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
-            [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }],
-            [{ text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
+            [{ text: SERVICES.windows.text, callback_data: SERVICES.windows.callbackData }],
+            [{ text: SERVICES.mosquitoNets.text, callback_data: SERVICES.mosquitoNets.callbackData }],
             [{ text: SERVICES.support.text, callback_data: SERVICES.support.callbackData }],
             [{ text: "Наш сайт", web_app: { url: "https://okkom.com.ua/" } }],
-        ]
-    },
-    metalPlasticConstructions: {
-        inline_keyboard: [
-            [{ text: SERVICES.metalPlasticConstructions.types.windows.text, callback_data: SERVICES.metalPlasticConstructions.types.windows.callbackData }, { text: SERVICES.metalPlasticConstructions.types.doors.text, callback_data: SERVICES.metalPlasticConstructions.types.doors.callbackData }],
-            [{ text: SERVICES.metalPlasticConstructions.types.partitions.text, callback_data: SERVICES.metalPlasticConstructions.types.partitions.callbackData }, { text: SERVICES.metalPlasticConstructions.types.mosquitoNets.text, callback_data: SERVICES.metalPlasticConstructions.types.mosquitoNets.callbackData }],
-            [{ text: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.text, callback_data: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.callbackData }, { text: "<< Назад", callback_data: "cancel" }],
         ]
     },
     cancel: {
