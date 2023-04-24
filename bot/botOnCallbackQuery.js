@@ -20,6 +20,10 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 await bot.editMessageText("Послуги, які ми надаємо", form)
                 return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
             }
+            case "cancel": {
+                await bot.editMessageText("Послуги ОККОМ", form)
+                return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
+            }
             case SERVICES.windows.callbackData: {
                 CHAT_STORE.botState = {
                     ...CHAT_STORE.botState,
@@ -32,6 +36,7 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 }
 
                 await bot.editMessageText("Оберіть вінко з представлених нижче (вiд 1 до 16)", form)
+                await bot.editMessageReplyMarkup(OPTIONS.botOptions.cancel, form)
                 return bot.sendPhoto(chatId, "https://raw.githubusercontent.com/SeFFoFF/OkkomBot/main/images/windows.jpg")
             }
             case SERVICES.mosquitoNets.callbackData: {
@@ -74,6 +79,25 @@ const botOnCallbackQuery = (bot, CHAT_STORE) => {
                 CHAT_STORE.requestToManager = {
                     ...CHAT_STORE.requestToManager,
                     isActive: false
+                }
+
+                if (CHAT_STORE.order.window.orderStep) {
+                    CHAT_STORE.order.window = {
+                        ...CHAT_STORE.order.window,
+                        orderStep: null
+                    }
+
+                    return bot.sendMessage(chatId, "Металопластикові конструкції", OPTIONS.botOptions.servicesWithMarkup)
+                }
+
+                if (CHAT_STORE.order.mosquitoNets.orderStep) {
+                    CHAT_STORE.order.mosquitoNets = {
+                        ...CHAT_STORE.order.mosquitoNets,
+                        orderStep: null
+                    }
+
+                    await bot.editMessageText("Металопластикові конструкції", form)
+                    return bot.editMessageReplyMarkup(OPTIONS.botOptions.services, form)
                 }
 
                 await bot.editMessageText("Послуги ОККОМ", form)

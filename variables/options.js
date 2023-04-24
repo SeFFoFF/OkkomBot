@@ -35,13 +35,13 @@ const botOptions = {
     },
     cancel: {
         inline_keyboard: [
-            [{ text: "Повернутися назад", callback_data: "cancel" }],
+            [{ text: "<< Назад", callback_data: "cancel" }],
         ]
     },
     cancelWithMarkup: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: "Повернутися назад", callback_data: "cancel" }],
+                [{ text: "<< Назад", callback_data: "cancel" }],
             ]
         })
     },
@@ -100,7 +100,8 @@ const windowsOptions = {
 const mosquitoNetsOptions = {
     step1: {
         inline_keyboard: [
-            [{ text: "Зовнішня", callback_data: "external" }, { text: "Внутрішня", callback_data: "internal" }, { text: "Дверна", callback_data: "door" }]
+            [{ text: "Зовнішня", callback_data: "external" }, { text: "Внутрішня", callback_data: "internal" }, { text: "Дверна", callback_data: "door" }],
+            [{ text: "<< Назад", callback_data: "cancel" }],
         ]
     },
     step2: {
