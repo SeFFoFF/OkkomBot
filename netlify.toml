@@ -1,0 +1,9 @@
+[build]
+    command = "npm install && npm run build"
+    publish = "dist"
+
+[build.environment]
+    TELEGRAM_API_TOKEN = "$TELEGRAM_API_TOKEN"
+
+[[plugins]]
+    package = "netlify-plugin-inline-functions-env"
