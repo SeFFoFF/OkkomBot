@@ -20,6 +20,8 @@ const CHAT_STORE = {
     },
     order: {
         whatIsOrdered: "",
+        phoneNumber: null,
+        isReadyToPhoneNumber: false,
         window: {
             orderStep: null,
             type: null, // 1-16 from image

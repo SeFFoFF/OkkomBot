@@ -37,9 +37,9 @@ const SERVICES = {
         text: "Рулонні штори",
         callbackData: "rollerBlinds"
     },
-    other: {
-        text: "Iнше",
-        callbackData: "other"
+    support: {
+        text: "Підтримка",
+        callbackData: "support"
     }
 }
 

@@ -10,7 +10,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     switch (order) {
     case "window": {
         if (CHAT_STORE.wishes.wishesText) {
-            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\nНомер телефону: <b>${CHAT_STORE.order.phoneNumber}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
 
             requestObject = {
                 date: new Date(),
@@ -23,10 +23,11 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 profile: CHAT_STORE.order.window.profile,
                 doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
                 username,
+                phoneNumber: CHAT_STORE.order.phoneNumber,
                 wish: CHAT_STORE.wishes.wishesText
             }
         } else {
-            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________`
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\nНомер телефону: <b>${CHAT_STORE.order.phoneNumber}</b>\n_________________________________\nВікно №<b>${CHAT_STORE.order.window.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.window.sizes.width}см</b>, висота <b>${CHAT_STORE.order.window.sizes.height}см</b>\nПрофіль: <b>${CHAT_STORE.order.window.profile}</b>\nСклопакет: <b>${CHAT_STORE.order.window.doubleGlazedWindows}</b>\n_________________________________`
 
             requestObject = {
                 date: new Date(),
@@ -38,7 +39,8 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 },
                 profile: CHAT_STORE.order.window.profile,
                 doubleGlazedWindows: CHAT_STORE.order.window.doubleGlazedWindows,
-                username
+                username,
+                phoneNumber: CHAT_STORE.order.phoneNumber
             }
         }
 
@@ -56,7 +58,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
     }
     case "mosquitoNets": {
         if (CHAT_STORE.wishes.wishesText) {
-            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\nНомер телефону: <b>${CHAT_STORE.order.phoneNumber}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________\nКоментар: <b>${CHAT_STORE.wishes.wishesText}</b>`
 
             requestObject = {
                 date: new Date(),
@@ -68,10 +70,11 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                 },
                 color: CHAT_STORE.order.mosquitoNets.color,
                 username,
+                phoneNumber: CHAT_STORE.order.phoneNumber,
                 wish: CHAT_STORE.wishes.wishesText
             }
         } else {
-            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________`
+            message = `Отримано замовлення\nЗамовник: <b>@${username}</b>\nНомер телефону: <b>${CHAT_STORE.order.phoneNumber}</b>\n_________________________________\nМоскітна сітка: <b>${CHAT_STORE.order.mosquitoNets.type}</b>\nРозміри: ширина <b>${CHAT_STORE.order.mosquitoNets.sizes.width}см</b>, висота <b>${CHAT_STORE.order.mosquitoNets.sizes.height}см</b>\nКолір: <b>${CHAT_STORE.order.mosquitoNets.color}</b>\n_________________________________`
 
             requestObject = {
                 date: new Date(),
@@ -82,7 +85,8 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
                     height: CHAT_STORE.order.mosquitoNets.sizes.height
                 },
                 color: CHAT_STORE.order.mosquitoNets.color,
-                username
+                username,
+                phoneNumber: CHAT_STORE.order.phoneNumber
             }
         }
 
@@ -98,12 +102,8 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
         break
     }
     default: {
-        message = `
-            <u>Отримано запит</u>
-            Запит: <b>${CHAT_STORE.requestToManager.text}</b>
-            Користувач: <b>@${username}</b>
-            Номер телефону: <b>${CHAT_STORE.requestToManager.phoneNumber}</b>
-        `
+        message = `Отримано запит\nКористувач: <b>@${username}</b>\nНомер телефону: <b>${CHAT_STORE.requestToManager.phoneNumber}</b>\n_________________________________\nЗапит: <b>${CHAT_STORE.requestToManager.text}</b>`
+
         CHAT_STORE.requestToManager = {
             isActive: false,
             text: "",
@@ -124,6 +124,7 @@ const sendData = async (bot, CHAT_STORE, chatId, username, order) => {
         CHAT_STORE.order = {
             ...CHAT_STORE.order,
             whatIsOrdered: "",
+            phoneNumber: null
         }
 
         CHAT_STORE.wishes = {

@@ -13,6 +13,25 @@ const botOnMessage = (bot, CHAT_STORE) => {
 
         if (CHAT_STORE.botState.action === "REQUEST") isTextValid = await textValidation(bot, chatId, msg.text, msg.sticker)
 
+        if (CHAT_STORE.order.isReadyToPhoneNumber && isTextValid) {
+            CHAT_STORE.order = {
+                ...CHAT_STORE.order,
+                isReadyToPhoneNumber: false
+            }
+
+            CHAT_STORE.order = {
+                ...CHAT_STORE.order,
+                phoneNumber: text
+            }
+
+            CHAT_STORE.wishes = {
+                ...CHAT_STORE.wishes,
+                isReadyToWishes: true
+            }
+
+            return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishesWithMarkup)
+        }
+
         if (CHAT_STORE.wishes.isActive && isTextValid) {
             CHAT_STORE.wishes = {
                 ...CHAT_STORE.wishes,
@@ -25,7 +44,7 @@ const botOnMessage = (bot, CHAT_STORE) => {
             if (!CHAT_STORE.requestToManager.text && isTextValid) {
                 CHAT_STORE.requestToManager = {
                     ...CHAT_STORE.requestToManager,
-                    text: text
+                    text
                 }
                 return bot.sendMessage(chatId, "Введіть номер телефону")
             } else {
@@ -99,12 +118,12 @@ const botOnMessage = (bot, CHAT_STORE) => {
                     orderStep: null
                 }
 
-                CHAT_STORE.wishes = {
-                    ...CHAT_STORE.wishes,
-                    isReadyToWishes: true
+                CHAT_STORE.order = {
+                    ...CHAT_STORE.order,
+                    isReadyToPhoneNumber: true
                 }
 
-                return bot.sendMessage(chatId, "Бажаєте залишити коментар чи побажання?", OPTIONS.botOptions.wishesWithMarkup)
+                return bot.sendMessage(chatId, "Введіть Ваш номер телефону")
             }
         }
     })

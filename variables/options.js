@@ -22,7 +22,7 @@ const botOptions = {
                 [{ text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
                 [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }],
                 [{ text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
-                [{ text: SERVICES.other.text, callback_data: SERVICES.other.callbackData }],
+                [{ text: SERVICES.support.text, callback_data: SERVICES.support.callbackData }],
                 [{ text: "Наш сайт", web_app: { url: "https://okkom.com.ua/" } }],
             ]
         })
@@ -33,7 +33,7 @@ const botOptions = {
             [{ text: SERVICES.interiorDoor.text, callback_data: SERVICES.interiorDoor.callbackData }],
             [{ text: SERVICES.protectiveShutters.text, callback_data: SERVICES.protectiveShutters.callbackData }],
             [{ text: SERVICES.rollerBlinds.text, callback_data: SERVICES.rollerBlinds.callbackData }],
-            [{ text: SERVICES.other.text, callback_data: SERVICES.other.callbackData }],
+            [{ text: SERVICES.support.text, callback_data: SERVICES.support.callbackData }],
             [{ text: "Наш сайт", web_app: { url: "https://okkom.com.ua/" } }],
         ]
     },
@@ -44,11 +44,17 @@ const botOptions = {
             [{ text: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.text, callback_data: SERVICES.metalPlasticConstructions.types.doubleGlazedWindows.callbackData }, { text: "<< Назад", callback_data: "cancel" }],
         ]
     },
-
     cancel: {
         inline_keyboard: [
             [{ text: "Повернутися назад", callback_data: "cancel" }],
         ]
+    },
+    cancelWithMarkup: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{ text: "Повернутися назад", callback_data: "cancel" }],
+            ]
+        })
     },
     wishes: {
         inline_keyboard: [
@@ -75,14 +81,14 @@ const windowsOptions = {
     step3: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: "60мм", callback_data: "60mm" }, { text: "70мм", callback_data: "70mm" }, { text: "85мм", callback_data: "85mm" }],
+                [{ text: "60мм", callback_data: "60мм" }, { text: "70мм", callback_data: "70мм" }, { text: "85мм", callback_data: "85мм" }],
                 [{ text: "Що таке профиль?", callback_data: "profile" }],
             ]
         })
     },
     step3WithoutProfile: {
         inline_keyboard: [
-            [{ text: "60мм", callback_data: "60mm" }, { text: "70мм", callback_data: "70mm" }, { text: "85мм", callback_data: "85mm" }]
+            [{ text: "60мм", callback_data: "60мм" }, { text: "70мм", callback_data: "70мм" }, { text: "85мм", callback_data: "85мм" }]
         ]
     },
     step4: {
